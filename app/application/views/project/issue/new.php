@@ -27,7 +27,11 @@
 			<tr>
 				<th><?php echo __('tinyissue.assigned_to'); ?></th>
 				<td>
-					<?php echo Form::select('assigned_to', array(0 => '') + Project\User::dropdown($project->users()->get()), Input::old('assigned_to')); ?>
+          <?php 
+            $old_user = Input::old('assigned_to'); 
+            $default_user = (!empty($old_user)) ? $old_user : $default_user;  
+          ?>
+					<?php echo Form::select('assigned_to', array(0 => '') + $project_users, $default_user); ?>
 				</td>
 			</tr>
 			<?php endif; ?>

@@ -22,8 +22,14 @@ class Project_Issue_Controller extends Base_Controller {
 	 */
 	public function get_new()
 	{
+    $project       = Project::current();
+    $project_users = Project\User::dropdown($project->users()->get());
+    $users_keys    = array_keys($project_users);
+    $default_user  = (count($project_users) == 1) ? $users_keys[0] : NULL;
 		return $this->layout->nest('content', 'project.issue.new', array(
-			'project' => Project::current()
+			'project'       => $project,
+			'project_users' => $project_users,
+			'default_user'  => $default_user
 		));
 	}
 
