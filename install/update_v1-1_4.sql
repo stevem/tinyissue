@@ -8,3 +8,6 @@ CREATE TABLE IF NOT EXISTS `users_todos` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+ALTER TABLE `projects_issues`
+	ADD `weight` bigint(20) default '1';
