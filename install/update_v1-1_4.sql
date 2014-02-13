@@ -11,3 +11,4 @@ CREATE TABLE IF NOT EXISTS `users_todos` (
 
 ALTER TABLE `projects_issues`
 	ADD `weight` bigint(20) default '1';
+	ADD `points` decimal(2,1) default '0';

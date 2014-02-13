@@ -31,6 +31,18 @@ $(function(){
       $(ui.draggable).css('left', 0);
       $(ui.draggable).css('top', 0);
       
+      // Recalculate points display.
+      $('.todo-lane').each(function(){
+        var lane_total = 0;
+        var lane_id = $(this).attr('id');
+        $('#' + lane_id + ' .todo-list-item-inner .points').each(function() {
+            lane_total += parseFloat($(this).html());
+        });
+        if (true) {
+          $('#' + lane_id + ' h4 span.points').html(lane_total);
+        }
+      });
+      
       // Prevent closed items from being moved again.
       if (new_status == 0) {
         $(ui.draggable).draggable( "option", "disabled", true );

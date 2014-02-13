@@ -71,6 +71,7 @@ class Todo extends Eloquent {
       $todo->assigned_to  = $issue->attributes['assigned_to'];
       $todo->issue_name   = $issue->attributes['title'];
       $todo->issue_status = $issue->attributes['status'];
+      $todo->issue_points = $issue->attributes['points'];
       $todo->issue_link   = $issue->to();
       
       $project = Project::find($issue->attributes['project_id']);

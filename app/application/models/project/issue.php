@@ -298,6 +298,7 @@ class Issue extends \Eloquent {
 		$fill = array(
 			'title' => $input['title'],
 			'body' => $input['body'],
+			'points' => $input['points'],
 			'assigned_to' => $input['assigned_to']
 		);
 
@@ -392,7 +393,8 @@ class Issue extends \Eloquent {
 			'created_by' => \Auth::user()->id,
 			'project_id' => $project->id,
 			'title' => $input['title'],
-			'body' => $input['body']
+			'body' => $input['body'],
+			'points' => $input['points']
 		);
 
 		if(\Auth::user()->permission('issue-modify'))

@@ -10,7 +10,7 @@
 				<a href="" class="comments"><?php echo $row->comment_count(); ?></a>
 				<a href="" class="id">#<?php echo $row->id; ?></a>
 				<div class="data">
-					<a href="<?php echo $row->to(); ?>"><?php echo $row->title; ?></a>
+					<a href="<?php echo $row->to(); ?>"><?php echo $row->title; ?></a> 
 					<div class="info">
 						<?php echo __('tinyissue.created_by'); ?>
 						<strong><?php echo $row->user->firstname . ' ' . $row->user->lastname; ?></strong>
@@ -27,6 +27,10 @@
 						<?php if($row->assigned_to != 0): ?>
 							- <?php echo __('tinyissue.assigned_to'); ?>
 							<strong><?php echo $row->assigned->firstname . ' ' . $row->assigned->lastname; ?></strong>
+						<?php endif; ?>
+            
+						<?php if($row->points != 0): ?>
+              - <strong><?php echo $row->points; ?> <?php echo strtolower(($row->points > 1) ? __('tinyissue.points') : __('tinyissue.point')); ?></strong>
 						<?php endif; ?>
 
 					</div>

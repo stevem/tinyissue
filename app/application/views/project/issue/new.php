@@ -23,6 +23,13 @@
 					<?php echo $errors->first('body', '<span class="error">:message</span>'); ?>
 				</td>
 			</tr>
+			<tr>
+				<th><?php echo __('tinyissue.points'); ?></th>
+				<td>
+					<input type="text" name="points" value="<?php echo Input::old('points'); ?>" />
+					<?php echo $errors->first('points', '<span class="error">:message</span>'); ?>
+				</td>
+			</tr>
 			<?php if(Auth::user()->permission('issue-modify')): ?>
 			<tr>
 				<th><?php echo __('tinyissue.assigned_to'); ?></th>
