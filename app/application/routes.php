@@ -50,9 +50,8 @@ View::composer('layouts.project', function($view)
 	Asset::style('app', 'app/assets/css/app.css');
 	Asset::script('jquery', 'app/assets/js/jquery.js');
 	Asset::script('jquery-ui', 'app/assets/js/jquery-ui.js');
-	Asset::script('app', 'app/assets/js/app.js', 'jquery');
-	Asset::script('app', 'app/assets/js/sortable-issues.js', 'jquery');
-
+	Asset::script('app', 'app/assets/js/app.js', 'jquery-ui');
+	Asset::script('sortable', 'app/assets/js/sortable-issues.js', 'app');
 	Asset::script('swf', '/app/assets/js/uploadify/swfobject.js', 'app');
 	Asset::script('uploadify', '/app/assets/js/uploadify/jquery.uploadify.v2.1.4.min.js', 'app');
 	Asset::script('project', '/app/assets/js/project.js', 'uploadify');
