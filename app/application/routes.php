@@ -10,6 +10,7 @@ Route::any('project/(:num)/(:any)', 'project@(:2)');
 Route::any('project/(:num)/issue/new', 'project.issue@new');
 Route::any('project/(:num)/issue/(:num)', 'project.issue@index');
 Route::any('project/(:num)/issue/(:num)/(:any)', 'project.issue@(:3)');
+Route::any('project/(:num)/kanban', 'project.kanban@index');
 
 Route::controller(array(
 	'home',
@@ -55,6 +56,7 @@ View::composer('layouts.project', function($view)
 	Asset::script('swf', '/app/assets/js/uploadify/swfobject.js', 'app');
 	Asset::script('uploadify', '/app/assets/js/uploadify/jquery.uploadify.v2.1.4.min.js', 'app');
 	Asset::script('project', '/app/assets/js/project.js', 'uploadify');
+	Asset::script('todo', 'app/assets/js/todo-board.js', 'app');
 
 	if(!isset($view->sidebar))
 	{
@@ -66,12 +68,12 @@ View::composer('layouts.project', function($view)
 
 View::composer('todo.index', function($view)
 {
-	Asset::script('app', 'app/assets/js/todo.js', 'jquery');
+	Asset::script('todo', 'app/assets/js/todo.js', 'jquery');
 });
 
 View::composer('user.issues', function($view)
 {
-	Asset::script('app', 'app/assets/js/todo-issues.js', 'jquery');
+	Asset::script('todo', 'app/assets/js/todo-issues.js', 'jquery');
 });
 
 View::composer('layouts.login', function($view)

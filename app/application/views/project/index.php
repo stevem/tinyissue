@@ -25,6 +25,11 @@
 			<?php echo $assigned_count == 1 ? '1 '.__('tinyissue.issue_assigned_to_you') : $assigned_count . ' '.__('tinyissue.issues_assigned_to_you'); ?>
 			</a>
 		</li>
+		<li <?php echo $active == 'kanban' ? 'class="active"' : ''; ?>>
+			<a href="<?php echo Project::current()->to('kanban'); ?>">
+			<?php echo __('tinyissue.kanban_board'); ?>
+			</a>
+		</li>
 	</ul>
 
 	<div class="inside-tabs">

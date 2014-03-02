@@ -21,6 +21,37 @@ class Todo extends Eloquent {
     }
   }
   
+  public static function load_project_todos($project_id = 0)
+  {
+    $return = array();
+    
+		$query = DB::table('users_todos')
+                ->join('projects_issues', 'users_todos.issue_id', '=', 'projects_issues.id')
+                ->select(array('users_todos.issue_id', 'users_todos.user_id', 'users_todos.updated_at'))
+                ->where('projects_issues.project_id', '=', $project_id)
+                ->order_by('users_todos.updated_at', 'DESC')
+                ->get();
+    
+		foreach ($query as $row)
+		{
+      $todo = Todo::load_todo($row->issue_id, $row->user_id);
+      
+			Todo::load_todo_extras($todo);
+      
+      // Close the todo if the issue has been closed.
+      if ($todo->issue_status == 0 && $todo->status > 0) 
+      {
+        $todo->status = 0;
+        Todo::update_todo($todo->issue_id, 0);
+      }
+      
+      $return[$todo->attributes['id']] = $todo->attributes;
+		}
+		
+		return $return;
+  }
+  
+  
 	/**
 	 * Load all a user's todos, deleting any for issues that have been reassigned.
 	 */

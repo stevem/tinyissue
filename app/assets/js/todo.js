@@ -5,9 +5,15 @@ $(function(){
   var totalWidth  = parseInt($('#todo-lanes').width());
   var laneCount   = parseInt($('.todo-lane').size());
   var laneWidth   = (totalWidth - (laneSpacing * laneCount)) / laneCount;
+  //var laneHeight  = 0;
   $('.todo-lane').each(function() {
     $(this).css( "width", laneWidth - borderWidth);
+    //if ($(this).height() > laneHeight) {
+    //  laneHeight = $(this).height();
+    //}
   });
+  //laneHeight = laneHeight + 20;
+  //$('#todo-lanes').css("height", laneheight);
   
   // Utility to recalculate point values.
   function recalculatePoints() {

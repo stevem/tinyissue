@@ -135,5 +135,6 @@ return array(
   'todo_status_3' => 'QA',
   'sortable_issue_howto' => 'Drag and drop issues to re-order them.',
   'points' => 'Points',
-  'point' => 'Point'
+  'point' => 'Point',
+  'kanban_board' => 'Tracking Board',
 );
