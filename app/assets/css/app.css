@@ -912,3 +912,12 @@ h4 span.points {
   float: right;
   padding: 0 5px;
 }
+
+h3 span.points {
+  float: left;
+  padding: 2px 5px;
+}
+
+h3 div.points-total { 
+  font-variant: small-caps; 
+}

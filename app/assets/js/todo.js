@@ -9,6 +9,26 @@ $(function(){
     $(this).css( "width", laneWidth - borderWidth);
   });
   
+  // Utility to recalculate point values.
+  function recalculatePoints() {
+    $('#points-total').html('0');
+    $('#open-total').html('0');
+    $('.todo-lane').each(function(){
+      var lane_total = 0;
+      var points_total = 0;
+      var points_open = 0;
+      var lane_id = $(this).attr('id');
+      $('#' + lane_id + ' .todo-list-item-inner .points').each(function() {
+          lane_total += parseFloat($(this).html());    
+      });
+      $('#' + lane_id + ' h4 span.points').html(lane_total);
+      points_total = parseFloat($('#points-total').html()) + lane_total;
+      if (lane_id != 'lane-status-0') points_open = parseFloat($('#points-open').html()) + lane_total;
+      $('#points-total').html(points_total);
+      $('#points-open').html(points_open);
+    });
+  }
+  
   // Draggable interaction.
   $('.todo-list-item.draggable').draggable({
      snap: '.todo-lane',
@@ -31,22 +51,13 @@ $(function(){
       $(ui.draggable).css('left', 0);
       $(ui.draggable).css('top', 0);
       
-      // Recalculate points display.
-      $('.todo-lane').each(function(){
-        var lane_total = 0;
-        var lane_id = $(this).attr('id');
-        $('#' + lane_id + ' .todo-list-item-inner .points').each(function() {
-            lane_total += parseFloat($(this).html());
-        });
-        if (true) {
-          $('#' + lane_id + ' h4 span.points').html(lane_total);
-        }
-      });
-      
       // Prevent closed items from being moved again.
       if (new_status == 0) {
         $(ui.draggable).draggable( "option", "disabled", true );
       }
+      
+      // Recalculate.
+      recalculatePoints();
       
       // POST the new status.
       $.post(
@@ -70,13 +81,16 @@ $(function(){
       { "issue_id" : issue_id }, 
       function( data ) {
         if (data.success) {
-          $('#todo-id-' + issue_id).hide(300);
+          $('#todo-id-' + issue_id).hide('slow');
+          $('#todo-id-' + issue_id).remove();
         }
         else {
           alert(data.errors);
         }
       }, "json" 
     );
+    
+    recalculatePoints();
   });
 
 });

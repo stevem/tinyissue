@@ -21,15 +21,21 @@ class Todo_Controller extends Base_Controller {
 		}
     
 		// Load todos into lanes according to status.
+    $total_points = 0;
+    $open_points  = 0;
 		$todos = Todo::load_user_todos();
 		foreach ($todos as $todo) {
 			$lanes[$todo['status']][] = $todo;
       $points[$todo['status']] += $todo['issue_points'];
+      $total_points += $todo['issue_points'];
+      if ($todo['status'] > 0) $open_points += $todo['issue_points'];
 		}
 		
 		return $this->layout->with('active', 'todo')->nest('content', 'todo.index', array(
 			'lanes'   => $lanes,
 			'points'  => $points,
+      'total_points' => $total_points,
+      'open_points'  => $open_points,
 			'status'  => $status_codes,
 			'columns' => count($status_codes),
 		));

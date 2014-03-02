@@ -1,6 +1,10 @@
 <h3>
 	<?php echo __('tinyissue.your_todos'); ?>
 	<span><?php echo __('tinyissue.your_todos_description'); ?></span>
+  <div class="points-total"> 
+    <span class="points" id="points-open" style="float: none; display: inline-block;"><?php echo $open_points ?></span> todo /
+    <span class="points" id="points-total" style="float: none; display: inline-block;"><?php echo $total_points ?></span> total
+  </div>
 </h3>
 
 <div class="pad" id="todo-lanes">
