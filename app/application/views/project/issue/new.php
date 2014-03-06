@@ -26,7 +26,7 @@
 			<tr>
 				<th><?php echo __('tinyissue.points'); ?></th>
 				<td>
-					<input type="text" name="points" value="<?php echo Input::old('points'); ?>" />
+          <?php echo Form::select('points', array('0.5' => '0.5', '1.0' => '1', '2.0' => '2', '3.0' => '3', '5.0' => '5', '8.0' => '8'), Input::old('points')); ?>
 					<?php echo $errors->first('points', '<span class="error">:message</span>'); ?>
 				</td>
 			</tr>

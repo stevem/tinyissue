@@ -10,8 +10,6 @@ $(function(){
           todo_issues.push(returned[todo]["issue_id"]);
         }
         
-        console.log(returned);
-        
         // Apply button classes as needed.
         $('a.todo-button').each(function() {
           var issue_id = "" + $(this).data('issue-id');

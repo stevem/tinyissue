@@ -136,5 +136,5 @@ return array(
   'sortable_issue_howto' => 'Drag and drop issues to re-order them.',
   'points' => 'Points',
   'point' => 'Point',
-  'kanban_board' => 'Tracking Board',
+  'kanban_board' => 'Sprint Board',
 );
