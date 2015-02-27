@@ -56,9 +56,6 @@ $(function(){
         $(ui.draggable).draggable( "option", "disabled", true );
       }
       
-      // Recalculate.
-      recalculatePoints();
-      
       // POST the new status.
       $.post(
         siteurl + 'ajax/todo/update_todo', 
@@ -68,6 +65,9 @@ $(function(){
             alert(data.errors);
           }
         }, "json" );
+        
+      // Recalculate.
+      recalculatePoints();
     }
   });
   
@@ -82,14 +82,13 @@ $(function(){
       function( data ) {
         if (data.success) {
           $('#todo-id-' + issue_id).hide().remove();
+          recalculatePoints();
         }
         else {
           alert(data.errors);
         }
       }, "json" 
     );
-    
-    recalculatePoints();
   });
 
 });
